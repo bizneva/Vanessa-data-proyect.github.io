@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio - GitHub</title>
+    <style>
+        /* Variables de colores y estilos */
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #ffffff;
+            --accent-color: #ff3366;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 2rem;
+        }
+
+        nav a {
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--text-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background-color: var(--light-gray);
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: var(--light-gray);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill {
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .contact p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">MiPortfolio</a>
+            <nav>
+                <ul>
+                    <li><a href="#projects">Proyectos</a></li>
+                    <li><a href="#about">Sobre Mí</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Desarrollador Creativo & Solucionador de Problemas</h1>
+            <p>Creo experiencias digitales impactantes con código limpio y diseño centrado en el usuario.</p>
+            <a href="#projects" class="btn">Ver Proyectos</a>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Mis Proyectos</h2>
+            <div class="projects-grid">
+                <!-- Proyecto 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Proyecto 1">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p class="project-description">Una plataforma de comercio electrónico completa con carrito de compras y pasarela de pago.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Proyecto 2">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p class="project-description">Aplicación para gestión de tareas con funciones de colaboración en tiempo real.</p>
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">CSS3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Proyecto 3">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Weather Dashboard</h3>
+                        <p class="project-description">Dashboard interactivo para visualizar datos meteorológicos con gráficos personalizados.</p>
+                        <div class="project-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">API</span>
+                            <span class="tag">Chart.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Sobre Mí</h2>
+                    <p>Soy un desarrollador full-stack apasionado por crear soluciones digitales innovadoras. Con más de 5 años de experiencia en el desarrollo web, me especializo en crear aplicaciones escalables y centradas en el usuario.</p>
+                    <p>Mi enfoque combina el diseño atractivo con la funcionalidad robusta, siempre buscando las mejores prácticas y tecnologías modernas.</p>
+                    <div class="skills">
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">React</span>
+                        <span class="skill">Node.js</span>
+                        <span class="skill">Python</span>
+                        <span class="skill">UI/UX Design</span>
+                        <span class="skill">Git</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/400x400" alt="Foto de perfil">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Trabajemos Juntos</h2>
+            <p>¿Tienes un proyecto en mente? Me encantaría escucharlo y colaborar contigo para hacerlo realidad.</p>
+            <a href="mailto:tuemail@ejemplo.com" class="btn">Contáctame</a>
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Mi Portfolio. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Efecto de scroll en el header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
