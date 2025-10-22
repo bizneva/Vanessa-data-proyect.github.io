@@ -1033,7 +1033,45 @@
                             <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificado-aprobacion-de-modulo-nuevo-modelos-avanzados-y-redes-neuronal.png?raw=true" alt="Modelos Avanzados y Redes Neuronales">
                         </div>
                         <h4 class="cert-title">Modelos Avanzados y Redes Neuronales</h4>
-                        <div class="cert-issuer">Desafío Latam</
+                        <div class="cert-issuer">Desafío Latam</div>
+                        <div class="cert-date">Deep learning y redes neuronales</div>
+                    </div>
+                    <!-- Duplicados para efecto de carrusel infinito -->
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificacion-aprobacion-de-carrera-nuevo-modelos-avanzados-y-redes-neuronales-g95-18880(3).png?raw=true" alt="Data Scientist">
+                        </div>
+                        <h4 class="cert-title">Data Scientist</h4>
+                        <div class="cert-issuer">Desafío Latam</div>
+                        <div class="cert-date">Modelos avanzados y redes neuronales</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificado%20carrera%20Data%20analyst%20con%20python.png?raw=true" alt="Data Analyst con Python">
+                        </div>
+                        <h4 class="cert-title">Data Analyst con Python</h4>
+                        <div class="cert-issuer">Desafío Latam</div>
+                        <div class="cert-date">Análisis de datos con Python</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/Fundamentos-finanzas.png?raw=true" alt="Fundamentos de Finanzas">
+                        </div>
+                        <h4 class="cert-title">Fundamentos de Finanzas</h4>
+                        <div class="cert-issuer">Institución Educativa</div>
+                        <div class="cert-date">Conceptos financieros básicos</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/Branding-y-neuromarketing-digital.jpg?raw=true" alt="Branding y Neuromarketing">
+                        </div>
+                        <h4 class="cert-title">Branding y Neuromarketing Digital</h4>
+                        <div class="cert-issuer">Marketing Digital</div>
+                        <div class="cert-date">Estrategias de marca y neurociencia</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Contact Section -->
         <section id="contact">
@@ -1047,16 +1085,24 @@
                 <a href="mailto:vanessa.b.munoz.a@gmail.com" class="btn">Di Hola</a>
                 <div class="contact-info">
                     <div class="contact-item">
-                        <span>📱</span>
-                        <span>+56994271960</span>
-                    </div>
-                    <div class="contact-item">
                         <span>📧</span>
                         <span>vanessa.b.munoz.a@gmail.com</span>
                     </div>
                     <div class="contact-item">
-                        <span>🔗</span>
+                        <span>📱</span>
+                        <span>+56 9 9427 1960</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Santiago, Chile</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>💼</span>
                         <a href="https://www.linkedin.com/in/vanessa-beatriz-mu%C3%B1oz-araneda-b41064b0/" target="_blank">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>⚡</span>
+                        <a href="https://github.com/bizneva" target="_blank">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -1076,6 +1122,11 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+                // Cerrar menú móvil si está abierto
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('mobile-open');
+                }
             });
         });
 
@@ -1088,9 +1139,23 @@
                 nav.style.backgroundColor = 'rgba(10, 25, 47, 0.85)';
             }
         });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.getElementById('navLinks');
+
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('mobile-open');
+            });
+
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.nav') && navLinks.classList.contains('mobile-open')) {
+                    navLinks.classList.remove('mobile-open');
+                }
+            });
+        }
     </script>
 </body>
 </html>
-
-
-
