@@ -28,6 +28,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--dark-navy);
             color: var(--slate);
@@ -54,6 +58,7 @@
             background-color: rgba(10, 25, 47, 0.85);
             backdrop-filter: blur(10px);
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .logo {
@@ -61,6 +66,7 @@
             font-weight: bold;
             color: var(--green);
             text-decoration: none;
+            z-index: 1001;
         }
 
         .nav-links {
@@ -75,6 +81,7 @@
             font-size: 0.9rem;
             font-family: var(--font-mono);
             transition: color 0.3s;
+            padding: 0.5rem;
         }
 
         .nav-links a:hover {
@@ -84,6 +91,17 @@
         .nav-number {
             color: var(--green);
             margin-right: 5px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--green);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
         }
 
         /* Main sections */
@@ -112,6 +130,7 @@
             font-size: clamp(40px, 8vw, 80px);
             font-weight: 600;
             margin-bottom: 0.5rem;
+            line-height: 1.1;
         }
 
         .hero h2 {
@@ -119,6 +138,7 @@
             font-size: clamp(30px, 6vw, 60px);
             font-weight: 600;
             margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
 
         .hero p {
@@ -161,25 +181,31 @@
 
         .section-title h3 {
             color: var(--lightest-slate);
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 600;
             margin-right: 1rem;
+            white-space: nowrap;
         }
 
         .section-title .line {
             height: 1px;
             background-color: var(--lightest-navy);
             flex-grow: 1;
+            margin-left: 1rem;
         }
 
+        /* Texto justificado - Opción 3 */
         .about-text {
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.7;
             color: var(--slate);
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
 
         .about-text p {
             margin-bottom: 1.5rem;
+            hyphens: auto;
         }
 
         .skills-list {
@@ -205,10 +231,13 @@
 
         .about-image {
             position: relative;
+            display: flex;
+            justify-content: center;
         }
 
         .image-wrapper {
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             height: 300px;
             border-radius: 5px;
             background-color: var(--green);
@@ -262,8 +291,7 @@
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 30px;
             width: 2px;
             height: 100%;
             background-color: var(--lightest-navy);
@@ -271,19 +299,11 @@
 
         .timeline-item {
             display: flex;
-            justify-content: flex-end;
-            padding-right: 30px;
+            padding-left: 70px;
+            padding-right: 0;
             position: relative;
             margin: 2rem 0;
-            width: 50%;
-        }
-
-        .timeline-item:nth-child(even) {
-            align-self: flex-end;
-            justify-content: flex-start;
-            padding-left: 30px;
-            padding-right: 0;
-            left: 50%;
+            width: 100%;
         }
 
         .timeline-content {
@@ -321,6 +341,7 @@
         .timeline-desc {
             color: var(--slate);
             font-size: 0.9rem;
+            line-height: 1.6;
         }
 
         .timeline-item::before {
@@ -331,12 +352,7 @@
             background-color: var(--green);
             border-radius: 50%;
             top: 20px;
-            right: -6px;
-        }
-
-        .timeline-item:nth-child(even)::before {
-            left: -6px;
-            right: auto;
+            left: 24px;
         }
 
         /* Skills Section */
@@ -347,7 +363,7 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -384,41 +400,76 @@
             border-radius: 20px;
             font-size: 0.9rem;
             font-family: var(--font-mono);
+            white-space: nowrap;
         }
 
-        /* Certifications Section */
+        /* Certifications Section - Carrusel */
         .certifications {
             padding: 5rem 0;
+            overflow: hidden;
         }
 
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+        .cert-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .cert-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .cert-track:hover {
+            animation-play-state: paused;
         }
 
         .cert-card {
             background-color: var(--light-navy);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 5px;
             box-shadow: 0 10px 30px -15px var(--navy-shadow);
             transition: all 0.3s;
+            min-width: 280px;
+            flex-shrink: 0;
         }
 
         .cert-card:hover {
             transform: translateY(-5px);
         }
 
+        .cert-image {
+            width: 100%;
+            height: 160px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .cert-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .cert-card:hover .cert-image img {
+            transform: scale(1.05);
+        }
+
         .cert-title {
             color: var(--lightest-slate);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
         }
 
         .cert-issuer {
             color: var(--green);
             font-family: var(--font-mono);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin-bottom: 0.5rem;
         }
 
@@ -427,65 +478,13 @@
             font-size: 0.8rem;
         }
 
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            gap: 4rem;
-        }
-
-        .project-card {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .project-content {
-            grid-column: 1 / 7;
-            grid-row: 1 / -1;
-            z-index: 2;
-        }
-
-        .project-image {
-            grid-column: 6 / -1;
-            grid-row: 1 / -1;
-            position: relative;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 5px;
-            filter: grayscale(100%) contrast(1);
-            transition: filter 0.3s;
-        }
-
-        .project-card:hover .project-image img {
-            filter: none;
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--green);
-            mix-blend-mode: multiply;
-            opacity: 0.7;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 0;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-280px * 4 - 1.5rem * 4));
+            }
         }
 
         /* Contact Section */
@@ -493,23 +492,26 @@
             text-align: center;
             max-width: 600px;
             margin: 0 auto;
+            padding: 2rem 0;
         }
 
         .contact h2 {
             color: var(--lightest-slate);
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.5rem);
             margin-bottom: 1rem;
         }
 
         .contact p {
             font-size: 1.1rem;
             margin-bottom: 3rem;
+            line-height: 1.6;
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
@@ -520,6 +522,17 @@
             color: var(--light-slate);
             font-family: var(--font-mono);
             font-size: 0.9rem;
+            padding: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--light-slate);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--green);
         }
 
         /* Footer */
@@ -532,50 +545,216 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 1200px) {
+            .app {
+                padding: 0 100px;
+            }
+            
+            .nav {
+                width: calc(100% - 200px);
+            }
+        }
+
+        @media (max-width: 968px) {
             .app {
                 padding: 0 50px;
             }
             
             .nav {
                 width: calc(100% - 100px);
+                padding: 1.5rem 0;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links.mobile-open {
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--dark-navy);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .nav-links.mobile-open a {
+                font-size: 1.2rem;
+                padding: 1rem;
             }
             
             .about {
                 grid-template-columns: 1fr;
+                gap: 3rem;
             }
             
-            .project-content {
-                grid-column: 1 / -1;
+            .about-image {
+                order: -1;
+                justify-content: center;
             }
             
-            .project-image {
-                grid-column: 1 / -1;
-                opacity: 0.25;
+            .image-wrapper {
+                max-width: 250px;
+                height: 250px;
+            }
+            
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .cert-card {
+                min-width: 250px;
+            }
+            
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-250px * 4 - 1.5rem * 4));
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app {
+                padding: 0 25px;
+            }
+            
+            .nav {
+                width: calc(100% - 50px);
+            }
+            
+            section {
+                padding: 80px 0;
+                min-height: auto;
+            }
+            
+            .hero {
+                padding-top: 150px;
+                text-align: center;
+            }
+            
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .section-title .line {
+                width: 100%;
+                margin-left: 0;
             }
             
             .timeline::before {
-                left: 30px;
+                left: 20px;
             }
             
             .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 0;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-                padding-left: 70px;
+                padding-left: 50px;
             }
             
             .timeline-item::before {
-                left: 24px;
-                right: auto;
+                left: 14px;
             }
             
-            .timeline-item:nth-child(even)::before {
-                left: 24px;
+            .timeline-content {
+                padding: 1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .skill-category {
+                padding: 1.5rem;
+            }
+            
+            .cert-card {
+                min-width: 220px;
+                padding: 1rem;
+            }
+            
+            .cert-image {
+                height: 140px;
+            }
+            
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-220px * 4 - 1.5rem * 4));
+                }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app {
+                padding: 0 15px;
+            }
+            
+            .nav {
+                width: calc(100% - 30px);
+                padding: 1rem 0;
+            }
+            
+            .hero {
+                padding-top: 120px;
+            }
+            
+            .hero h1 {
+                font-size: clamp(32px, 10vw, 48px);
+            }
+            
+            .hero h2 {
+                font-size: clamp(24px, 8vw, 36px);
+            }
+            
+            .image-wrapper {
+                max-width: 200px;
+                height: 200px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skill-items {
+                justify-content: flex-start;
+            }
+            
+            .cert-track {
+                gap: 1rem;
+            }
+            
+            .cert-card {
+                min-width: 200px;
+            }
+            
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-200px * 4 - 1rem * 4));
+                }
             }
         }
     </style>
@@ -585,7 +764,8 @@
         <!-- Navigation -->
         <nav class="nav">
             <a href="#" class="logo">VM</a>
-            <ul class="nav-links">
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about"><span class="nav-number">01.</span> Sobre Mí</a></li>
                 <li><a href="#experience"><span class="nav-number">02.</span> Experiencia</a></li>
                 <li><a href="#skills"><span class="nav-number">03.</span> Habilidades</a></li>
@@ -597,8 +777,8 @@
         <!-- Hero Section -->
         <section class="hero">
             <h4>Hola, mi nombre es</h4>
-            <h1>Vanessa Muñoz.</h1>
-            <h2>Data Scientist & Analista de Datos.</h2>
+            <h1>Vanessa Muñoz</h1>
+            <h2>Data Scientist & Analista de Datos</h2>
             <p>Soy una profesional apasionada por el análisis de datos, la inteligencia artificial aplicada y la creación de soluciones que conectan tecnología, emoción y acción.</p>
             <a href="#projects" class="btn">Ver mis proyectos</a>
         </section>
@@ -621,7 +801,7 @@
                         Complementé mi perfil con la carrera intensiva de Data Science en Desafío Latam, donde adquirí competencias avanzadas en análisis exploratorio, estadística aplicada, machine learning y redes neuronales.
                     </p>
                     <p>
-                        Actualmente me desempeño como Analista de Datos en Strixsoft, donde soy responsable del procesamiento, limpieza y modelado de datos provenientes de sistemas internos.
+                        Me he desempeñado como Analista de Datos en Strixsoft, donde fui responsable del procesamiento, limpieza y modelado de datos provenientes de sistemas internos.
                     </p>
                     <p>
                         Aquí algunas tecnologías con las que he estado trabajando recientemente:
@@ -629,16 +809,22 @@
                     <div class="skills-list">
                         <div class="skill-item">Python</div>
                         <div class="skill-item">SQL (PostgreSQL)</div>
+                        <div class="skill-item">R</div>
+                        <div class="skill-item">Airflow</div>
+                        <div class="skill-item">Docker</div>
+                        <div class="skill-item">Jupiter Notebook</div>
+                        <div class="skill-item">Spyder</div>
+                        <div class="skill-item">Colab</div>
+                        <div class="skill-item">Visual Studio code</div>
                         <div class="skill-item">Tableau</div>
-                        <div class="skill-item">Keras & TensorFlow</div>
-                        <div class="skill-item">XGBoost</div>
-                        <div class="skill-item">Redes Neuronales</div>
+                        <div class="skill-item">Power Bi</div>
+                        <div class="skill-item">postgresql</div>
+                        <div class="skill-item">Excel</div>
                     </div>
                 </div>
                 <div class="about-image">
                     <div class="image-wrapper">
-                        <!-- Reemplaza con tu imagen -->
-                        <img src="https://via.placeholder.com/300" alt="Vanessa Muñoz">
+                        <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/foto-vanessa.jpeg?raw=true" alt="Vanessa Muñoz">
                     </div>
                 </div>
             </div>
@@ -656,15 +842,12 @@
                         <div class="timeline-date">junio 2023 - Presente</div>
                         <h3 class="timeline-title">Analista de Datos</h3>
                         <div class="timeline-company">Strixsoft</div>
-                        <p class="timeline-desc">Responsable del procesamiento, limpieza y análisis de datos provenientes de sistemas internos. Implementación de modelos descriptivos y predictivos para apoyar decisiones estratégicas. Desarrollo de dashboards interactivos, visualización de métricas clave y automatización de reportes.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">septiembre 2022 - julio 2023</div>
-                        <h3 class="timeline-title">Propietario de la Empresa</h3>
-                        <div class="timeline-company">Otored</div>
-                        <p class="timeline-desc">Emprendimiento propio en el área de soluciones auditivas y tecnológicas.</p>
+                        <p class="timeline-desc">
+                            <strong>Integración de Fuentes de Datos:</strong> Unifiqué datos provenientes de sistemas clínicos y administrativos, reduciendo errores de registro en un 35% y mejorando la trazabilidad de la información.<br><br>
+                            <strong>Análisis de Tendencias en Datos Clínicos:</strong> Detecté patrones en registros auditivos y métricas de atención, aportando información clave para decisiones médicas y mejoras en la experiencia del paciente.<br><br>
+                            <strong>Gestión de Calidad de Datos:</strong> Desarrollé controles automáticos de validación y limpieza que elevaron la confiabilidad de los datasets críticos a más del 98%.<br><br>
+                            <strong>Automatización de Modelos de Machine Learning:</strong> Implementé pipelines automatizados de entrenamiento y validación de modelos predictivos, reduciendo en un 50% el tiempo de actualización de resultados.
+                        </p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -672,7 +855,7 @@
                         <div class="timeline-date">mayo 2017 - julio 2019</div>
                         <h3 class="timeline-title">Audióloga</h3>
                         <div class="timeline-company">Widex Chile</div>
-                        <p class="timeline-desc">Especialista en soluciones auditivas y adaptación de audífonos.</p>
+                        <p class="timeline-desc">Especialista en soluciones auditivas, gestión y ventas.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -680,7 +863,7 @@
                         <div class="timeline-date">marzo 2015 - febrero 2017</div>
                         <h3 class="timeline-title">Tecnólogo Médico Otorrino</h3>
                         <div class="timeline-company">SIMIL CENTRO AUDITIVO</div>
-                        <p class="timeline-desc">Jefe local casa matriz centro auditivo SIMIL. Realización de exámenes auditivos, adaptación de audífonos, labores administrativas y manejo de licitaciones.</p>
+                        <p class="timeline-desc">Jefe local casa matriz Providencia centro auditivo SIMIL. Audióloga, gestión y manejo de licitaciones.</p>
                     </div>
                 </div>
             </div>
@@ -711,7 +894,7 @@
                 <div class="skill-category">
                     <h4>Área Clínica</h4>
                     <div class="skill-items">
-                        <span class="skill-tag">Audiometría Clínica</span>
+                        <span class="skill-tag">Modelos predictivos</span>
                         <span class="skill-tag">Impedanciometría</span>
                         <span class="skill-tag">Adaptación Auditiva</span>
                         <span class="skill-tag">Atención al Paciente</span>
@@ -722,42 +905,107 @@
                     <h4>Comercial & Marketing</h4>
                     <div class="skill-items">
                         <span class="skill-tag">Neuromarketing</span>
+                        <span class="skill-tag">Segmentación de clientes</span>
+                        <span class="skill-tag">Predicción de Churn</span>
+                        <span class="skill-tag">Predicción de precios</span>
+                        <span class="skill-tag">Predicción de ventas</span>
                         <span class="skill-tag">Branding Digital</span>
                         <span class="skill-tag">Gestión Estratégica</span>
-                        <span class="skill-tag">Ventas</span>
-                        <span class="skill-tag">Atención al Cliente</span>
-                        <span class="skill-tag">Gestión de Licitaciones</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h4>Administrativo & Finanzas</h4>
+                    <h4>Data Science Aplicado</h4>
                     <div class="skill-items">
-                        <span class="skill-tag">Gestión de Caja</span>
-                        <span class="skill-tag">Cuadratura de Caja</span>
-                        <span class="skill-tag">Cierre de Ventas</span>
-                        <span class="skill-tag">Recaudación</span>
-                        <span class="skill-tag">Gestión de Personas</span>
+                        <span class="skill-tag">Predicción de flujo</span>
+                        <span class="skill-tag">Detección de anomalías</span>
+                        <span class="skill-tag">Dashboards</span>
+                        <span class="skill-tag">Automatización</span>
+                        <span class="skill-tag">Alertas</span>
+                        <span class="skill-tag">Forecasting</span>
+                        <span class="skill-tag">Optimización</span>
+                        <span class="skill-tag">Scoring de riesgo</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Certifications Section -->
+        <!-- Certifications Section - Carrusel -->
         <section id="certifications" class="certifications">
             <div class="section-title">
                 <h3>Certificaciones</h3>
                 <div class="line"></div>
             </div>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <h4 class="cert-title">Carrera Data Scientist con Python</h4>
-                    <div class="cert-issuer">Desafío Latam</div>
-                    <div class="cert-date">Análisis estadístico con Python</div>
-                </div>
-                <div class="cert-card">
-                    <h4 class="cert-title">Branding y Neuromarketing Digital</h4>
-                    <div class="cert-issuer">Marketing Digital y Gestión Estratégica</div>
-                    <div class="cert-date">Especialización en marketing digital</div>
+            <div class="cert-carousel">
+                <div class="cert-track">
+                    <!-- Certificación 1 -->
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="images/certificado-data-science.jpg" alt="Certificado Data Science">
+                        </div>
+                        <h4 class="cert-title">Carrera Data Scientist con Python</h4>
+                        <div class="cert-issuer">Desafío Latam</div>
+                        <div class="cert-date">Análisis estadístico con Python</div>
+                    </div>
+                    <!-- Certificación 2 -->
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="images/certificado-neuromarketing.jpg" alt="Certificado Neuromarketing">
+                        </div>
+                        <h4 class="cert-title">Branding y Neuromarketing Digital</h4>
+                        <div class="cert-issuer">Marketing Digital y Gestión Estratégica</div>
+                        <div class="cert-date">Especialización en marketing digital</div>
+                    </div>
+                    <!-- Certificación 3 -->
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="images/certificado-python.jpg" alt="Certificado Python">
+                        </div>
+                        <h4 class="cert-title">Python para Análisis de Datos</h4>
+                        <div class="cert-issuer">Institución Educativa</div>
+                        <div class="cert-date">Fecha de obtención</div>
+                    </div>
+                    <!-- Certificación 4 -->
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="images/certificado-machine-learning.jpg" alt="Certificado Machine Learning">
+                        </div>
+                        <h4 class="cert-title">Machine Learning Avanzado</h4>
+                        <div class="cert-issuer">Institución Educativa</div>
+                        <div class="cert-date">Fecha de obtención</div>
+                    </div>
+                    <!-- Duplicados para efecto de carrusel infinito -->
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="images/certificado-data-science.jpg" alt="Certificado Data Science">
+                        </div>
+                        <h4 class="cert-title">Carrera Data Scientist con Python</h4>
+                        <div class="cert-issuer">Desafío Latam</div>
+                        <div class="cert-date">Análisis estadístico con Python</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="images/certificado-neuromarketing.jpg" alt="Certificado Neuromarketing">
+                        </div>
+                        <h4 class="cert-title">Branding y Neuromarketing Digital</h4>
+                        <div class="cert-issuer">Marketing Digital y Gestión Estratégica</div>
+                        <div class="cert-date">Especialización en marketing digital</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="images/certificado-python.jpg" alt="Certificado Python">
+                        </div>
+                        <h4 class="cert-title">Python para Análisis de Datos</h4>
+                        <div class="cert-issuer">Institución Educativa</div>
+                        <div class="cert-date">Fecha de obtención</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-image">
+                            <img src="images/certificado-machine-learning.jpg" alt="Certificado Machine Learning">
+                        </div>
+                        <h4 class="cert-title">Machine Learning Avanzado</h4>
+                        <div class="cert-issuer">Institución Educativa</div>
+                        <div class="cert-date">Fecha de obtención</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -774,16 +1022,24 @@
                 <a href="mailto:vanessa.b.munoz.a@gmail.com" class="btn">Di Hola</a>
                 <div class="contact-info">
                     <div class="contact-item">
-                        <span>📱</span>
-                        <span>+56994271960</span>
-                    </div>
-                    <div class="contact-item">
                         <span>📧</span>
                         <span>vanessa.b.munoz.a@gmail.com</span>
                     </div>
                     <div class="contact-item">
-                        <span>🔗</span>
-                        <a href="https://www.linkedin.com/in/vanessa-beatriz-mufroz-araneda-b41064b0" target="_blank">LinkedIn</a>
+                        <span>📱</span>
+                        <span>+56 9 9427 1960</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Santiago, Chile</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>💼</span>
+                        <a href="https://www.linkedin.com/in/vanessa-beatriz-mu%C3%B1oz-araneda-b41064b0/" target="_blank">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>⚡</span>
+                        <a href="https://github.com/bizneva" target="_blank">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -803,6 +1059,8 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+                // Cerrar menú móvil si está abierto
+                navLinks.classList.remove('mobile-open');
             });
         });
 
@@ -815,7 +1073,19 @@
                 nav.style.backgroundColor = 'rgba(10, 25, 47, 0.85)';
             }
         });
-    </script>
-</body>
-</html
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('mobile-open');
+        });
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav') && navLinks.classList.contains('mobile-open')) {
+                navLinks.classList.remove('mobile-open');
+            }
+       
 
