@@ -1035,4 +1035,62 @@
                         <h4 class="cert-title">Modelos Avanzados y Redes Neuronales</h4>
                         <div class="cert-issuer">Desafío Latam</
 
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact">
+                <h4>05. ¿Qué Sigue?</h4>
+                <h2>Pongámonos en Contacto</h2>
+                <p>
+                    Actualmente estoy buscando nuevas oportunidades. Mi bandeja de entrada siempre está abierta. 
+                    Ya sea que tengas una pregunta o simplemente quieras saludar, ¡haré todo lo posible para responderte!
+                </p>
+                <a href="mailto:vanessa.b.munoz.a@gmail.com" class="btn">Di Hola</a>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>+56994271960</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>vanessa.b.munoz.a@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🔗</span>
+                        <a href="https://www.linkedin.com/in/vanessa-beatriz-mu%C3%B1oz-araneda-b41064b0/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Diseñado y construido por Vanessa Muñoz</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Nav background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(10, 25, 47, 0.95)';
+            } else {
+                nav.style.backgroundColor = 'rgba(10, 25, 47, 0.85)';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
 
