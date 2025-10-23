@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
             --dark-navy: #0a192f;
             --light-navy: #112240;
             --lightest-navy: #233554;
-            --navy-shadow: rgba(2,12,27,0.7);
+            --navy-shadow: rgba(2, 12, 27, 0.7);
             --dark-slate: #495670;
             --slate: #8892b0;
             --light-slate: #a8b2d1;
@@ -208,26 +209,7 @@
             hyphens: auto;
         }
 
-        .skills-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
-            margin-top: 2rem;
-        }
 
-        .skill-item {
-            color: var(--light-slate);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .skill-item::before {
-            content: "▹";
-            color: var(--green);
-            margin-right: 0.5rem;
-        }
 
         .about-image {
             position: relative;
@@ -355,53 +337,7 @@
             left: 24px;
         }
 
-        /* Skills Section */
-        .skills {
-            padding: 5rem 0;
-            background-color: var(--light-navy);
-        }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background-color: var(--dark-navy);
-            padding: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 10px 30px -15px var(--navy-shadow);
-            transition: all 0.3s;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-category h4 {
-            color: var(--lightest-slate);
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            padding: 0.5rem 1rem;
-            background-color: var(--light-navy);
-            color: var(--light-slate);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-family: var(--font-mono);
-            white-space: nowrap;
-        }
 
         /* Certifications Section - Carrusel */
         .certifications {
@@ -482,8 +418,107 @@
             0% {
                 transform: translateX(0);
             }
+
             100% {
                 transform: translateX(calc(-280px * 11 - 1.5rem * 11));
+            }
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            color: #ccd6f6;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-right: 1rem;
+            white-space: nowrap;
+        }
+
+        .section-divider {
+            height: 1px;
+            background-color: #233554;
+            flex-grow: 1;
+            margin-left: 1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background-color: #112240;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px -15px rgba(100, 255, 218, 0.15);
+        }
+
+        .skill-category {
+            color: #ccd6f6;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .skill-tags {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.625rem;
+        }
+
+        .skill-tag {
+            padding: 0.375rem 0.75rem;
+            background-color: rgba(35, 53, 84, 0.95);
+            color: #a8b2d1;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-family: 'Courier New', monospace;
+            border: 1px solid rgba(204, 214, 246, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .skills-section {
+                padding: 4rem 0;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-tags {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -549,7 +584,7 @@
             .app {
                 padding: 0 100px;
             }
-            
+
             .nav {
                 width: calc(100% - 200px);
             }
@@ -559,20 +594,20 @@
             .app {
                 padding: 0 50px;
             }
-            
+
             .nav {
                 width: calc(100% - 100px);
                 padding: 1.5rem 0;
             }
-            
+
             .nav-links {
                 display: none;
             }
-            
+
             .mobile-menu-btn {
                 display: block;
             }
-            
+
             .nav-links.mobile-open {
                 display: flex;
                 position: fixed;
@@ -586,39 +621,40 @@
                 align-items: center;
                 gap: 2rem;
             }
-            
+
             .nav-links.mobile-open a {
                 font-size: 1.2rem;
                 padding: 1rem;
             }
-            
+
             .about {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
-            
+
             .about-image {
                 order: -1;
                 justify-content: center;
             }
-            
+
             .image-wrapper {
                 max-width: 250px;
                 height: 250px;
             }
-            
+
             .skills-list {
                 grid-template-columns: 1fr;
             }
-            
+
             .cert-card {
                 min-width: 250px;
             }
-            
+
             @keyframes scroll {
                 0% {
                     transform: translateX(0);
                 }
+
                 100% {
                     transform: translateX(calc(-250px * 11 - 1.5rem * 11));
                 }
@@ -629,76 +665,77 @@
             .app {
                 padding: 0 25px;
             }
-            
+
             .nav {
                 width: calc(100% - 50px);
             }
-            
+
             section {
                 padding: 80px 0;
                 min-height: auto;
             }
-            
+
             .hero {
                 padding-top: 150px;
                 text-align: center;
             }
-            
+
             .hero p {
                 margin-left: auto;
                 margin-right: auto;
             }
-            
+
             .section-title {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1rem;
             }
-            
+
             .section-title .line {
                 width: 100%;
                 margin-left: 0;
             }
-            
+
             .timeline::before {
                 left: 20px;
             }
-            
+
             .timeline-item {
                 padding-left: 50px;
             }
-            
+
             .timeline-item::before {
                 left: 14px;
             }
-            
+
             .timeline-content {
                 padding: 1rem;
             }
-            
+
             .contact-info {
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
             }
-            
+
             .skill-category {
                 padding: 1.5rem;
             }
-            
+
             .cert-card {
                 min-width: 220px;
                 padding: 1rem;
             }
-            
+
             .cert-image {
                 height: 140px;
             }
-            
+
             @keyframes scroll {
                 0% {
                     transform: translateX(0);
                 }
+
                 100% {
                     transform: translateX(calc(-220px * 11 - 1.5rem * 11));
                 }
@@ -709,49 +746,47 @@
             .app {
                 padding: 0 15px;
             }
-            
+
             .nav {
                 width: calc(100% - 30px);
                 padding: 1rem 0;
             }
-            
+
             .hero {
                 padding-top: 120px;
             }
-            
+
             .hero h1 {
                 font-size: clamp(32px, 10vw, 48px);
             }
-            
+
             .hero h2 {
                 font-size: clamp(24px, 8vw, 36px);
             }
-            
+
             .image-wrapper {
                 max-width: 200px;
                 height: 200px;
             }
-            
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .skill-items {
-                justify-content: flex-start;
-            }
-            
+
+
+
+
+
+
             .cert-track {
                 gap: 1rem;
             }
-            
+
             .cert-card {
                 min-width: 200px;
             }
-            
+
             @keyframes scroll {
                 0% {
                     transform: translateX(0);
                 }
+
                 100% {
                     transform: translateX(calc(-200px * 11 - 1rem * 11));
                 }
@@ -759,6 +794,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="app">
         <!-- Navigation -->
@@ -779,7 +815,8 @@
             <h4>Hola, mi nombre es</h4>
             <h1>Vanessa Muñoz</h1>
             <h2>Data Scientist & Analista de Datos</h2>
-            <p>Soy una profesional apasionada por el análisis de datos, la inteligencia artificial aplicada y la creación de soluciones que conectan tecnología, emoción y acción.</p>
+            <p>Soy una profesional apasionada por el análisis de datos, la inteligencia artificial aplicada y la
+                creación de soluciones que conectan tecnología, emoción y acción.</p>
             <a href="#projects" class="btn">Ver mis proyectos</a>
         </section>
 
@@ -792,16 +829,22 @@
                         <div class="line"></div>
                     </div>
                     <p>
-                        ¡Hola! Soy Vanessa Muñoz, Data Scientist y Analista de Datos con formación como Tecnóloga Médica en ORL y especialización en marketing y neuromarketing.
+                        ¡Hola! Soy Vanessa Muñoz, Data Scientist y Analista de Datos con formación como Tecnóloga Médica
+                        en ORL y especialización en marketing y neuromarketing.
                     </p>
                     <p>
-                        Mi formación como Tecnóloga Médica en ORL me otorgó una base sólida en análisis clínico, mientras que mi especialización en marketing y neuromarketing me permite abordar los datos desde una perspectiva estratégica y humana.
+                        Mi formación como Tecnóloga Médica en ORL me otorgó una base sólida en análisis clínico,
+                        mientras que mi especialización en marketing y neuromarketing me permite abordar los datos desde
+                        una perspectiva estratégica y humana.
                     </p>
                     <p>
-                        Complementé mi perfil con la carrera intensiva de Data Science en Desafío Latam, donde adquirí competencias avanzadas en análisis exploratorio, estadística aplicada, machine learning y redes neuronales.
+                        Complementé mi perfil con la carrera intensiva de Data Science en Desafío Latam, donde adquirí
+                        competencias avanzadas en análisis exploratorio, estadística aplicada, machine learning y redes
+                        neuronales.
                     </p>
                     <p>
-                        Me he desempeñado como Analista de Datos en Strixsoft, donde fui responsable del procesamiento, limpieza y modelado de datos provenientes de sistemas internos.
+                        Me he desempeñado como Analista de Datos en Strixsoft, donde fui responsable del procesamiento,
+                        limpieza y modelado de datos provenientes de sistemas internos.
                     </p>
                     <p>
                         Aquí algunas tecnologías con las que he estado trabajando recientemente:
@@ -824,7 +867,7 @@
                 </div>
                 <div class="about-image">
                     <div class="image-wrapper">
-                        <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/foto-vanessa.jpeg?raw=true" alt="Vanessa Muñoz">
+                        <img src="images//foto-vanessa.jpeg" alt="Vanessa Muñoz">
                     </div>
                 </div>
             </div>
@@ -843,10 +886,17 @@
                         <h3 class="timeline-title">Analista de Datos</h3>
                         <div class="timeline-company">Strixsoft</div>
                         <p class="timeline-desc">
-                            <strong>Integración de Fuentes de Datos:</strong> Unifiqué datos provenientes de sistemas clínicos y administrativos, reduciendo errores de registro en un 35% y mejorando la trazabilidad de la información.<br><br>
-                            <strong>Análisis de Tendencias en Datos Clínicos:</strong> Detecté patrones en registros auditivos y métricas de atención, aportando información clave para decisiones médicas y mejoras en la experiencia del paciente.<br><br>
-                            <strong>Gestión de Calidad de Datos:</strong> Desarrollé controles automáticos de validación y limpieza que elevaron la confiabilidad de los datasets críticos a más del 98%.<br><br>
-                            <strong>Automatización de Modelos de Machine Learning:</strong> Implementé pipelines automatizados de entrenamiento y validación de modelos predictivos, reduciendo en un 50% el tiempo de actualización de resultados.
+                            <strong>Integración de Fuentes de Datos:</strong> Unifiqué datos provenientes de sistemas
+                            clínicos y administrativos, reduciendo errores de registro en un 35% y mejorando la
+                            trazabilidad de la información.<br><br>
+                            <strong>Análisis de Tendencias en Datos Clínicos:</strong> Detecté patrones en registros
+                            auditivos y métricas de atención, aportando información clave para decisiones médicas y
+                            mejoras en la experiencia del paciente.<br><br>
+                            <strong>Gestión de Calidad de Datos:</strong> Desarrollé controles automáticos de validación
+                            y limpieza que elevaron la confiabilidad de los datasets críticos a más del 98%.<br><br>
+                            <strong>Automatización de Modelos de Machine Learning:</strong> Implementé pipelines
+                            automatizados de entrenamiento y validación de modelos predictivos, reduciendo en un 50% el
+                            tiempo de actualización de resultados.
                         </p>
                     </div>
                 </div>
@@ -863,22 +913,25 @@
                         <div class="timeline-date">marzo 2015 - febrero 2017</div>
                         <h3 class="timeline-title">Tecnólogo Médico Otorrino</h3>
                         <div class="timeline-company">SIMIL CENTRO AUDITIVO</div>
-                        <p class="timeline-desc">Jefe local casa matriz Providencia centro auditivo SIMIL. Audióloga, gestión y manejo de licitaciones.</p>
+                        <p class="timeline-desc">Jefe local casa matriz Providencia centro auditivo SIMIL. Audióloga,
+                            gestión y manejo de licitaciones.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="skills">
-            <div class="section-title">
-                <h3>Habilidades y Tecnologías</h3>
-                <div class="line"></div>
+        <section id="skills" class="skills-section">
+            <div class="section-header">
+                <h3 class="section-title">Habilidades y Tecnologías</h3>
+                <div class="section-divider"></div>
             </div>
+
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h4>Ciencia de Datos</h4>
-                    <div class="skill-items">
+                <!-- Ciencia de Datos -->
+                <div class="skill-card">
+                    <h4 class="skill-category">Ciencia de Datos</h4>
+                    <div class="skill-tags">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">SQL</span>
                         <span class="skill-tag">PostgreSQL</span>
@@ -891,9 +944,11 @@
                         <span class="skill-tag">XGBoost</span>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h4>Área Clínica</h4>
-                    <div class="skill-items">
+
+                <!-- Área Clínica -->
+                <div class="skill-card">
+                    <h4 class="skill-category">Área Clínica</h4>
+                    <div class="skill-tags">
                         <span class="skill-tag">Modelos predictivos</span>
                         <span class="skill-tag">Impedanciometría</span>
                         <span class="skill-tag">Adaptación Auditiva</span>
@@ -901,9 +956,11 @@
                         <span class="skill-tag">Protocolos de Atención</span>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h4>Comercial & Marketing</h4>
-                    <div class="skill-items">
+
+                <!-- Comercial & Marketing -->
+                <div class="skill-card">
+                    <h4 class="skill-category">Comercial & Marketing</h4>
+                    <div class="skill-tags">
                         <span class="skill-tag">Neuromarketing</span>
                         <span class="skill-tag">Segmentación de clientes</span>
                         <span class="skill-tag">Predicción de Churn</span>
@@ -913,9 +970,11 @@
                         <span class="skill-tag">Gestión Estratégica</span>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h4>Data Science Aplicado</h4>
-                    <div class="skill-items">
+
+                <!-- Data Science Aplicado -->
+                <div class="skill-card">
+                    <h4 class="skill-category">Data Science Aplicado</h4>
+                    <div class="skill-tags">
                         <span class="skill-tag">Predicción de flujo</span>
                         <span class="skill-tag">Detección de anomalías</span>
                         <span class="skill-tag">Dashboards</span>
@@ -940,7 +999,8 @@
                     <!-- Certificación 1 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificacion-aprobacion-de-carrera-nuevo-modelos-avanzados-y-redes-neuronales-g95-18880(3).png?raw=true" alt="Data Scientist">
+                            <img src="images/certificacion-aprobacion-de-carrera-nuevo-modelos-avanzados-y-redes-neuronales-g95-18880(3).png"
+                                alt="Data Scientist">
                         </div>
                         <h4 class="cert-title">Data Scientist</h4>
                         <div class="cert-issuer">Desafío Latam</div>
@@ -949,7 +1009,8 @@
                     <!-- Certificación 2 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificado%20carrera%20Data%20analyst%20con%20python.png?raw=true" alt="Data Analyst con Python">
+                            <img src="images/certificado%20carrera%20Data%20analyst%20con%20python.png"
+                                alt="Data Analyst con Python">
                         </div>
                         <h4 class="cert-title">Data Analyst con Python</h4>
                         <div class="cert-issuer">Desafío Latam</div>
@@ -958,7 +1019,7 @@
                     <!-- Certificación 3 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/Fundamentos-finanzas.png?raw=true" alt="Fundamentos de Finanzas">
+                            <img src="images/Fundamentos-finanzas.png" alt="Fundamentos de Finanzas">
                         </div>
                         <h4 class="cert-title">Fundamentos de Finanzas</h4>
                         <div class="cert-issuer">Institución Educativa</div>
@@ -967,7 +1028,7 @@
                     <!-- Certificación 4 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/Branding-y-neuromarketing-digital.jpg?raw=true" alt="Branding y Neuromarketing">
+                            <img src="images/Branding-y-neuromarketing-digital.jpg" alt="Branding y Neuromarketing">
                         </div>
                         <h4 class="cert-title">Branding y Neuromarketing Digital</h4>
                         <div class="cert-issuer">Marketing Digital</div>
@@ -976,7 +1037,8 @@
                     <!-- Certificación 5 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/Gesti%C3%B3n-de-calidad-y-acreditaci%C3%B3n-en-instituciones-de-salud.png?raw=true" alt="Gestión de Calidad en Salud">
+                            <img src="images/Gesti%C3%B3n-de-calidad-y-acreditaci%C3%B3n-en-instituciones-de-salud.png"
+                                alt="Gestión de Calidad en Salud">
                         </div>
                         <h4 class="cert-title">Gestión de Calidad en Salud</h4>
                         <div class="cert-issuer">Institución de Salud</div>
@@ -985,7 +1047,7 @@
                     <!-- Certificación 6 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/Growth-Hacking.png?raw=true" alt="Growth Hacking">
+                            <img src="images/Growth-Hacking.png" alt="Growth Hacking">
                         </div>
                         <h4 class="cert-title">Growth Hacking</h4>
                         <div class="cert-issuer">Marketing Digital</div>
@@ -994,7 +1056,8 @@
                     <!-- Certificación 7 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificado%20SQL%20para%20el%20an%C3%A1lisis%20de%20datos.png?raw=true" alt="SQL para Análisis de Datos">
+                            <img src="images/certificado%20SQL%20para%20el%20an%C3%A1lisis%20de%20datos.png"
+                                alt="SQL para Análisis de Datos">
                         </div>
                         <h4 class="cert-title">SQL para Análisis de Datos</h4>
                         <div class="cert-issuer">Desafío Latam</div>
@@ -1003,7 +1066,8 @@
                     <!-- Certificación 8 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificado%20Visualizaci%C3%B3n%20y%20comunicaci%C3%B3n%20de%20insights.png?raw=true" alt="Visualización de Insights">
+                            <img src="images/certificado%20Visualizaci%C3%B3n%20y%20comunicaci%C3%B3n%20de%20insights.png"
+                                alt="Visualización de Insights">
                         </div>
                         <h4 class="cert-title">Visualización de Insights</h4>
                         <div class="cert-issuer">Desafío Latam</div>
@@ -1012,7 +1076,8 @@
                     <!-- Certificación 9 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificado%20an%C3%A1lisis%20estad%C3%ADstico%20con%20python.png?raw=true" alt="Análisis Estadístico con Python">
+                            <img src="images/certificado%20an%C3%A1lisis%20estad%C3%ADstico%20con%20python.png"
+                                alt="Análisis Estadístico con Python">
                         </div>
                         <h4 class="cert-title">Análisis Estadístico con Python</h4>
                         <div class="cert-issuer">Desafío Latam</div>
@@ -1021,7 +1086,8 @@
                     <!-- Certificación 10 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificado-aprobacion-de-modulo-nuevo-machine-learning-g95-18880(3).png?raw=true" alt="Machine Learning">
+                            <img src="images/certificado-aprobacion-de-modulo-nuevo-machine-learning-g95-18880(3).png"
+                                alt="Machine Learning">
                         </div>
                         <h4 class="cert-title">Machine Learning</h4>
                         <div class="cert-issuer">Desafío Latam</div>
@@ -1030,7 +1096,8 @@
                     <!-- Certificación 11 -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificado-aprobacion-de-modulo-nuevo-modelos-avanzados-y-redes-neuronal.png?raw=true" alt="Modelos Avanzados y Redes Neuronales">
+                            <img src="images/certificado-aprobacion-de-modulo-nuevo-modelos-avanzados-y-redes-neuronal.png"
+                                alt="Modelos Avanzados y Redes Neuronales">
                         </div>
                         <h4 class="cert-title">Modelos Avanzados y Redes Neuronales</h4>
                         <div class="cert-issuer">Desafío Latam</div>
@@ -1039,7 +1106,8 @@
                     <!-- Duplicados para efecto de carrusel infinito -->
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificacion-aprobacion-de-carrera-nuevo-modelos-avanzados-y-redes-neuronales-g95-18880(3).png?raw=true" alt="Data Scientist">
+                            <img src="images//certificacion-aprobacion-de-carrera-nuevo-modelos-avanzados-y-redes-neuronales-g95-18880(3).png"
+                                alt="Data Scientist">
                         </div>
                         <h4 class="cert-title">Data Scientist</h4>
                         <div class="cert-issuer">Desafío Latam</div>
@@ -1047,7 +1115,8 @@
                     </div>
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/certificado%20carrera%20Data%20analyst%20con%20python.png?raw=true" alt="Data Analyst con Python">
+                            <img src="images//certificado%20carrera%20Data%20analyst%20con%20python.png"
+                                alt="Data Analyst con Python">
                         </div>
                         <h4 class="cert-title">Data Analyst con Python</h4>
                         <div class="cert-issuer">Desafío Latam</div>
@@ -1055,7 +1124,7 @@
                     </div>
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/Fundamentos-finanzas.png?raw=true" alt="Fundamentos de Finanzas">
+                            <img src="images//Fundamentos-finanzas.png" alt="Fundamentos de Finanzas">
                         </div>
                         <h4 class="cert-title">Fundamentos de Finanzas</h4>
                         <div class="cert-issuer">Institución Educativa</div>
@@ -1063,7 +1132,7 @@
                     </div>
                     <div class="cert-card">
                         <div class="cert-image">
-                            <img src="https://github.com/bizneva/Vanessa-data-proyect.github.io/blob/main/images/Branding-y-neuromarketing-digital.jpg?raw=true" alt="Branding y Neuromarketing">
+                            <img src="images//Branding-y-neuromarketing-digital.jpg" alt="Branding y Neuromarketing">
                         </div>
                         <h4 class="cert-title">Branding y Neuromarketing Digital</h4>
                         <div class="cert-issuer">Marketing Digital</div>
@@ -1073,14 +1142,22 @@
             </div>
         </section>
 
+        <div id="popup" style="
+          display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8);
+          justify-content:center; align-items:center; z-index:9999;">
+            <img id="popup-img" src="" alt="" style="
+            max-width:90%; max-height:90%; border-radius:8px; box-shadow:0 0 20px #000;">
+        </div>
+
         <!-- Contact Section -->
         <section id="contact">
             <div class="contact">
                 <h4>05. ¿Qué Sigue?</h4>
                 <h2>Pongámonos en Contacto</h2>
                 <p>
-                    Actualmente estoy buscando nuevas oportunidades. Mi bandeja de entrada siempre está abierta. 
-                    Ya sea que tengas una pregunta o simplemente quieras saludar, ¡haré todo lo posible para responderte!
+                    Actualmente estoy buscando nuevas oportunidades. Mi bandeja de entrada siempre está abierta.
+                    Ya sea que tengas una pregunta o simplemente quieras saludar, ¡haré todo lo posible para
+                    responderte!
                 </p>
                 <a href="mailto:vanessa.b.munoz.a@gmail.com" class="btn">Di Hola</a>
                 <div class="contact-info">
@@ -1098,7 +1175,8 @@
                     </div>
                     <div class="contact-item">
                         <span>💼</span>
-                        <a href="https://www.linkedin.com/in/vanessa-beatriz-mu%C3%B1oz-araneda-b41064b0/" target="_blank">LinkedIn</a>
+                        <a href="https://www.linkedin.com/in/vanessa-beatriz-mu%C3%B1oz-araneda-b41064b0/"
+                            target="_blank">LinkedIn</a>
                     </div>
                     <div class="contact-item">
                         <span>⚡</span>
@@ -1131,7 +1209,7 @@
         });
 
         // Nav background on scroll
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const nav = document.querySelector('.nav');
             if (window.scrollY > 50) {
                 nav.style.backgroundColor = 'rgba(10, 25, 47, 0.95)';
@@ -1145,17 +1223,36 @@
         const navLinks = document.getElementById('navLinks');
 
         if (mobileMenuBtn && navLinks) {
-            mobileMenuBtn.addEventListener('click', function() {
+            mobileMenuBtn.addEventListener('click', function () {
                 navLinks.classList.toggle('mobile-open');
             });
 
             // Cerrar menú al hacer clic fuera
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 if (!e.target.closest('.nav') && navLinks.classList.contains('mobile-open')) {
                     navLinks.classList.remove('mobile-open');
                 }
             });
         }
+
+        // Mostrar imagen en popup
+        document.querySelectorAll('.cert-card img').forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', () => {
+                const popup = document.getElementById('popup');
+                const popupImg = document.getElementById('popup-img');
+                popupImg.src = img.src;
+                popup.style.display = 'flex';
+            });
+        });
+
+        // Cerrar al hacer clic fuera o presionar Esc
+        const popup = document.getElementById('popup');
+        popup.addEventListener('click', () => popup.style.display = 'none');
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') popup.style.display = 'none';
+        });
     </script>
 </body>
+
 </html>
