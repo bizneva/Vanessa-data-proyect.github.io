@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vanessa Muñoz - Data Scientist</title>
     <style>
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* Aplicar a cada sección */
+        section {
+            scroll-snap-align: start;
+            scroll-snap-stop: normal;
+        }
+
+        /* Opcional: para un snap más suave */
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-snap-type: y proximity;
+                /* Cambia a 'proximity' para un snap menos agresivo */
+            }
+        }
+
         /* Variables y reset */
         :root {
             --green: #64ffda;
